@@ -1,11 +1,9 @@
 import { notFound } from 'next/navigation'
 import ClientExpertisePage from './ClientExpertisePage'
-import { Brain, Rocket, Zap, FlaskConical, Car, TrendingUp, Code } from 'lucide-react'
-
 
 const expertiseData = {
   'data-ai': {
-    icon: Brain,
+    iconKey: 'Brain',
     title: 'Data & AI',
     subtitle: 'Machine Learning & Intelligent Systems',
     description: 'Transform your organization with cutting-edge artificial intelligence and machine learning solutions. We develop intelligent systems that learn, adapt, and deliver unprecedented insights from your data.',
@@ -72,7 +70,7 @@ const expertiseData = {
     }
   },
   'aerospace': {
-    icon: 'Rocket',
+    iconKey: 'Rocket',
     title: 'Aerospace & Defense',
     subtitle: 'Advanced Aerospace Technologies',
     description: 'Pioneer the future of flight and space exploration with revolutionary aerospace technologies that push the boundaries of what\'s possible.',
@@ -139,7 +137,7 @@ const expertiseData = {
     }
   },
   'energy': {
-    icon: 'Zap',
+    iconKey: 'Zap',
     title: 'Energy & Sustainability',
     subtitle: 'Clean Energy Innovation',
     description: 'Accelerate the transition to sustainable energy with breakthrough technologies that harness renewable resources and optimize energy systems.',
@@ -206,7 +204,7 @@ const expertiseData = {
     }
   },
   'chemistry': {
-    icon: 'FlaskConical',
+    iconKey: 'FlaskConical',
     title: 'Chemistry & Materials',
     subtitle: 'Advanced Materials Innovation',
     description: 'Engineer the materials of tomorrow with breakthrough chemistry and nanotechnology that enable new possibilities across industries.',

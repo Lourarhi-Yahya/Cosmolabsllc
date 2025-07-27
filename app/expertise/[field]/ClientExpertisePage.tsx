@@ -3,6 +3,9 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Link from 'next/link'
+import { Brain, Rocket, Zap, FlaskConical, Car, TrendingUp, Code } from 'lucide-react'
+
+const iconMap = { Brain, Rocket, Zap, FlaskConical, Car, TrendingUp, Code };
 import { ArrowRight, Users, Calendar, MapPin, TrendingUp as Impact } from 'lucide-react'
 
 interface ClientExpertisePageProps {
@@ -13,6 +16,8 @@ export default function ClientExpertisePage({ fieldData }: ClientExpertisePagePr
   const { ref: heroRef, inView: heroInView } = useInView({ triggerOnce: true, threshold: 0.1 })
   const { ref: capabilitiesRef, inView: capabilitiesInView } = useInView({ triggerOnce: true, threshold: 0.1 })
   const { ref: projectsRef, inView: projectsInView } = useInView({ triggerOnce: true, threshold: 0.1 })
+
+  const Icon = iconMap[fieldData.iconKey as keyof typeof iconMap] || Brain
 
   return (
     <div className="pt-20">
@@ -25,7 +30,7 @@ export default function ClientExpertisePage({ fieldData }: ClientExpertisePagePr
           className="max-w-4xl mx-auto"
         >
           <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${fieldData.color} rounded-2xl mb-6`}>
-            <fieldData.icon className="w-8 h-8 text-white" />
+            <Icon className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-4">{fieldData.title}</h1>
           <p className="text-xl md:text-2xl text-gray-200 mb-8">{fieldData.subtitle}</p>
