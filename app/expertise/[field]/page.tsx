@@ -1,9 +1,14 @@
-'use client'
+export async function generateStaticParams() {
+  return [
+    { field: 'data-ai' },
+    { field: 'aerospace' },
+    { field: 'energy' },
+    { field: 'chemistry' }
+  ];
+}
 
-import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
+import ClientExpertisePage from './ClientExpertisePage'
 import { 
   Brain, 
   Rocket, 
@@ -12,13 +17,7 @@ import {
   Building2, 
   Car, 
   TrendingUp, 
-  Code,
-  ArrowRight,
-  CheckCircle,
-  TrendingUp as Impact,
-  Users,
-  Calendar,
-  MapPin
+  Code
 } from 'lucide-react'
 
 const expertiseData = {
@@ -79,24 +78,24 @@ const expertiseData = {
         impact: '$500K+ cost savings',
         client: 'Global Manufacturing Corp',
         duration: '12 months',
-        location: 'Germany'
+        location: 'Detroit, USA'
       }
     ],
     metrics: {
       projects: '150+',
       clients: '45',
-      impact: '$3M+',
+      impact: '$2.8M+',
       accuracy: '99.2%'
     }
   },
   'aerospace': {
-    icon: Rocket,
-    title: 'Aerospace, Space & Defense',
-    subtitle: 'Advanced Propulsion & Space Technologies',
-    description: 'Pioneer the future of aerospace with revolutionary propulsion systems, satellite technologies, and defense innovations that push the boundaries of what\'s possible.',
-    color: 'from-purple-500 to-pink-500',
-    heroImage: 'https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=1200&h=600&fit=crop',
-    overview: 'Our Aerospace practice develops next-generation technologies for space exploration, defense applications, and commercial aviation. We work at the cutting edge of physics and engineering to solve humanity\'s greatest aerospace challenges.',
+    icon: 'Rocket',
+    title: 'Aerospace & Defense',
+    subtitle: 'Advanced Aerospace Technologies',
+    description: 'Pioneer the future of flight and space exploration with revolutionary aerospace technologies that push the boundaries of what\'s possible.',
+    color: 'from-purple-500 to-indigo-500',
+    heroImage: 'https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=1200&h=600&fit=crop',
+    overview: 'Our Aerospace & Defense practice delivers cutting-edge solutions for the most demanding applications. From hypersonic vehicles to satellite systems, we engineer technologies that operate in the harshest environments.',
     capabilities: [
       {
         title: 'Advanced Propulsion Systems',
@@ -130,78 +129,78 @@ const expertiseData = {
         impact: '50% cost reduction vs traditional fuels',
         client: 'Major Airline Consortium',
         duration: '30 months',
-        location: 'Europe'
-      },
-      {
-        title: 'Next-Gen Satellite Constellation',
-        description: 'Designed low-Earth orbit satellite network providing global internet coverage with 10x faster speeds than existing systems.',
-        impact: '2.5M+ people connected',
-        client: 'Space Technology Startup',
-        duration: '36 months',
         location: 'California, USA'
       },
       {
-        title: 'Hypersonic Vehicle Development',
-        description: 'Created advanced materials and propulsion systems for Mach 5+ atmospheric flight vehicles.',
-        impact: 'Breakthrough defense capability',
-        client: 'Defense Contractor',
+        title: 'Next-Generation Satellite Constellation',
+        description: 'Designed and deployed advanced satellite network providing global high-speed internet with 99.9% uptime.',
+        impact: '1M+ users connected',
+        client: 'Space Technology Company',
         duration: '48 months',
+        location: 'Global'
+      },
+      {
+        title: 'Hypersonic Vehicle Development',
+        description: 'Created breakthrough hypersonic propulsion system achieving Mach 7+ speeds with enhanced maneuverability.',
+        impact: 'Revolutionary defense capability',
+        client: 'Defense Contractor',
+        duration: '60 months',
         location: 'Classified'
       }
     ],
     metrics: {
       projects: '85+',
       clients: '25',
-      impact: '$2M+',
-      efficiency: '85%'
+      impact: '$1.8M+',
+      reliability: '99.9%'
     }
   },
   'energy': {
-    icon: Zap,
-    title: 'Energy & Environment',
-    subtitle: 'Sustainable Energy Solutions',
-    description: 'Drive the transition to sustainable energy with breakthrough technologies in renewable systems, energy storage, and environmental solutions that power a cleaner future.',
+    icon: 'Zap',
+    title: 'Energy & Sustainability',
+    subtitle: 'Clean Energy Innovation',
+    description: 'Accelerate the transition to sustainable energy with breakthrough technologies that harness renewable resources and optimize energy systems.',
     color: 'from-green-500 to-emerald-500',
     heroImage: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1200&h=600&fit=crop',
-    overview: 'Our Energy & Environment practice develops innovative solutions for the global energy transition. From next-generation solar technologies to advanced energy storage systems, we help organizations build a sustainable energy future.',
+    overview: 'Our Energy & Sustainability practice develops transformative technologies for a carbon-neutral future. From advanced solar cells to smart grid systems, we create solutions that make clean energy accessible and efficient.',
     capabilities: [
       {
-        title: 'Renewable Energy Technologies',
-        description: 'Advanced solar, wind, and hydroelectric systems with breakthrough efficiency'
+        title: 'Renewable Energy Systems',
+        description: 'Next-generation solar, wind, and hydroelectric power technologies'
       },
       {
-        title: 'Energy Storage & Grid Solutions',
-        description: 'Next-generation batteries and smart grid technologies for reliable energy distribution'
+        title: 'Energy Storage Solutions',
+        description: 'Advanced battery technologies and grid-scale energy storage systems'
+      },
+      {
+        title: 'Smart Grid & Distribution',
+        description: 'Intelligent energy distribution networks and demand management systems'
       },
       {
         title: 'Carbon Capture & Utilization',
-        description: 'Innovative technologies for capturing and converting CO2 into valuable products'
+        description: 'Technologies for capturing and converting CO2 into useful products'
       },
       {
-        title: 'Sustainable Manufacturing',
-        description: 'Clean production processes and circular economy solutions'
+        title: 'Energy Efficiency Optimization',
+        description: 'AI-driven systems for optimizing energy consumption and reducing waste'
       },
       {
-        title: 'Environmental Monitoring',
-        description: 'Advanced sensors and analytics for environmental protection and compliance'
-      },
-      {
-        title: 'Green Hydrogen Production',
-        description: 'Efficient electrolysis and fuel cell technologies for clean energy storage'
+        title: 'Sustainable Transportation',
+        description: 'Electric vehicle technologies and alternative fuel systems'
       }
     ],
     projects: [
       {
-        title: 'Revolutionary Solar Cell Technology',
-        description: 'Developed perovskite-silicon tandem solar cells achieving 35% efficiency, setting new industry standards.',
-        impact: '40% cost reduction in solar energy',
-        client: 'Leading Solar Manufacturer',
+        title: 'Perovskite Solar Cell Breakthrough',
+        description: 'Developed next-generation solar cells with 35% efficiency and 25-year lifespan, revolutionizing renewable energy.',
+        impact: '40% cost reduction vs silicon',
+        client: 'Solar Technology Leader',
         duration: '24 months',
         location: 'California, USA'
       },
       {
         title: 'Grid-Scale Energy Storage',
-        description: 'Created advanced lithium-metal battery system with 10x longer lifespan and 50% higher energy density.',
+        description: 'Created advanced lithium-ion battery system with 10x longer lifespan and 50% higher energy density.',
         impact: '$5M+ market opportunity',
         client: 'Utility Consortium',
         duration: '36 months',
@@ -224,7 +223,7 @@ const expertiseData = {
     }
   },
   'chemistry': {
-    icon: FlaskConical,
+    icon: 'FlaskConical',
     title: 'Chemistry & Materials',
     subtitle: 'Advanced Materials Innovation',
     description: 'Engineer the materials of tomorrow with breakthrough chemistry and nanotechnology that enable new possibilities across industries.',
@@ -241,16 +240,16 @@ const expertiseData = {
         description: 'Engineered materials at the atomic scale for unprecedented performance'
       },
       {
-        title: 'Catalysis & Process Chemistry',
-        description: 'Efficient chemical processes and catalytic systems for sustainable production'
+        title: 'Catalysis & Chemical Processes',
+        description: 'Novel catalytic systems for efficient and sustainable chemical production'
       },
       {
-        title: 'Biomaterials & Biocompatibility',
-        description: 'Materials designed for medical applications and biological integration'
+        title: 'Biomaterials & Bioengineering',
+        description: 'Bio-inspired materials for medical and environmental applications'
       },
       {
         title: 'Quantum Materials',
-        description: 'Materials with quantum properties for next-generation electronics'
+        description: 'Materials with quantum properties for next-generation technologies'
       },
       {
         title: 'Sustainable Chemistry',
@@ -259,46 +258,48 @@ const expertiseData = {
     ],
     projects: [
       {
-        title: 'Self-Healing Infrastructure Materials',
-        description: 'Developed smart concrete that automatically repairs cracks, extending infrastructure lifespan by 300%.',
-        impact: '$2B+ infrastructure savings',
-        client: 'Department of Transportation',
-        duration: '42 months',
-        location: 'USA'
+        title: 'Self-Healing Polymer Composites',
+        description: 'Developed autonomous self-healing materials that extend product lifespan by 300% and reduce maintenance costs.',
+        impact: '$10M+ cost savings potential',
+        client: 'Automotive Manufacturer',
+        duration: '18 months',
+        location: 'Germany'
       },
       {
         title: 'Quantum Dot Display Technology',
-        description: 'Created ultra-efficient quantum dot materials for displays with 99% color accuracy and 50% lower power consumption.',
+        description: 'Created breakthrough quantum dot materials achieving 100% color gamut and 50% energy efficiency improvement.',
         impact: 'Next-gen display standard',
-        client: 'Electronics Manufacturer',
-        duration: '18 months',
+        client: 'Electronics Giant',
+        duration: '30 months',
         location: 'Asia'
       },
       {
-        title: 'Biodegradable Packaging Revolution',
-        description: 'Engineered plant-based polymers that decompose in 30 days while maintaining food safety standards.',
-        impact: '1M+ tons plastic reduction',
-        client: 'Food Industry Consortium',
-        duration: '24 months',
-        location: 'Global'
+        title: 'Bio-Inspired Drug Delivery',
+        description: 'Engineered smart nanoparticles for targeted drug delivery with 95% precision and minimal side effects.',
+        impact: '1M+ patients treated',
+        client: 'Pharmaceutical Company',
+        duration: '42 months',
+        location: 'Switzerland'
       }
     ],
     metrics: {
       projects: '95+',
-      clients: '28',
-      impact: '$900M+',
-      innovation: '300%'
+      clients: '30',
+      impact: '$1.5M+',
+      precision: '95%'
     }
-  },
-  'public-policy': {
-    icon: Building2,
-    title: 'Public Policy & Governance',
-    subtitle: 'Evidence-Based Policy Solutions',
-    description: 'Transform governance with data-driven policy solutions and innovative approaches to public challenges that create lasting societal impact.',
-    color: 'from-indigo-500 to-purple-500',
-    heroImage: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=1200&h=600&fit=crop',
-    overview: 'Our Public Policy practice combines rigorous research with practical implementation to develop evidence-based solutions for complex societal challenges. We work with governments and organizations to create policies that drive positive change.',
-    capabilities: [
+  }
+}
+
+export async function generateStaticParams() {
+  return Object.keys(expertiseData).map((field) => ({ field }));
+}
+
+export default function Page({ params }: { params: { field: string } }) {
+  const fieldData = expertiseData[params.field]
+  if (!fieldData) return notFound()
+  return <ClientExpertisePage fieldData={fieldData} />
+}
       {
         title: 'Policy Analysis & Design',
         description: 'Comprehensive policy research and evidence-based recommendation development'
@@ -560,20 +561,11 @@ const expertiseData = {
   }
 }
 
-export default function ExpertiseFieldPage({ params }: { params: { field: string } }) {
-  const fieldData = expertiseData[params.field as keyof typeof expertiseData]
-  
-  if (!fieldData) {
-    notFound()
-  }
-
-  const { ref: heroRef, inView: heroInView } = useInView({ triggerOnce: true, threshold: 0.1 })
-  const { ref: capabilitiesRef, inView: capabilitiesInView } = useInView({ triggerOnce: true, threshold: 0.1 })
-  const { ref: projectsRef, inView: projectsInView } = useInView({ triggerOnce: true, threshold: 0.1 })
-
-  return (
-    <div className="pt-20">
-      {/* Hero Section */}
+export default function Page({ params }: { params: { field: string } }) {
+  const fieldData = expertiseData[params.field]
+  if (!fieldData) return notFound()
+  return <ClientExpertisePage fieldData={fieldData} />
+}
       <section ref={heroRef} className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img
@@ -633,165 +625,3 @@ export default function ExpertiseFieldPage({ params }: { params: { field: string
               transition={{ duration: 0.8, delay: 0.4 }}
               className="card p-8"
             >
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">
-                Impact Metrics
-              </h3>
-              <div className="space-y-4">
-                <div>
-                  <div className="text-2xl font-bold text-primary-600 dark:text-primary-400">
-                    {fieldData.metrics.projects}
-                  </div>
-                  <div className="text-gray-600 dark:text-gray-400">Projects Completed</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-primary-600 dark:text-primary-400">
-                    {fieldData.metrics.clients}
-                  </div>
-                  <div className="text-gray-600 dark:text-gray-400">Clients Served</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-primary-600 dark:text-primary-400">
-                    {fieldData.metrics.impact}
-                  </div>
-                  <div className="text-gray-600 dark:text-gray-400">Value Created</div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Capabilities */}
-      <section ref={capabilitiesRef} className="section-padding bg-gray-50 dark:bg-dark-800">
-        <div className="container-max">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={capabilitiesInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Core Capabilities
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Comprehensive expertise across all aspects of {fieldData.title.toLowerCase()}
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {fieldData.capabilities.map((capability, index) => (
-              <motion.div
-                key={capability.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={capabilitiesInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                className="card p-6"
-              >
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="w-6 h-6 text-primary-600 dark:text-primary-400 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                      {capability.title}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-400">
-                      {capability.description}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Projects */}
-      <section ref={projectsRef} className="section-padding bg-white dark:bg-dark-900">
-        <div className="container-max">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={projectsInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Featured Projects
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Real-world applications and breakthrough innovations in {fieldData.title.toLowerCase()}
-            </p>
-          </motion.div>
-
-          <div className="space-y-8">
-            {fieldData.projects.map((project, index) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={projectsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="card p-8"
-              >
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                  <div className="lg:col-span-2">
-                    <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-                      {project.title}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                      {project.description}
-                    </p>
-                    <div className="flex items-center space-x-2 text-primary-600 dark:text-primary-400 font-semibold">
-                      <Impact className="w-5 h-5" />
-                      <span>{project.impact}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <div className="flex items-center space-x-3 text-gray-600 dark:text-gray-400">
-                      <Users className="w-5 h-5" />
-                      <span>{project.client}</span>
-                    </div>
-                    <div className="flex items-center space-x-3 text-gray-600 dark:text-gray-400">
-                      <Calendar className="w-5 h-5" />
-                      <span>{project.duration}</span>
-                    </div>
-                    <div className="flex items-center space-x-3 text-gray-600 dark:text-gray-400">
-                      <MapPin className="w-5 h-5" />
-                      <span>{project.location}</span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-r from-primary-600 to-blue-600">
-        <div className="container-max text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={projectsInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="max-w-3xl mx-auto"
-          >
-            <h2 className="text-4xl font-bold text-white mb-6">
-              Ready to Innovate in {fieldData.title}?
-            </h2>
-            <p className="text-xl text-blue-100 mb-8">
-              Let's discuss how our expertise can accelerate your next breakthrough project.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact" className="bg-white text-primary-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold transition-all duration-200 inline-flex items-center">
-                Start a Project
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
-              <Link href="/expertise" className="border-2 border-white text-white hover:bg-white hover:text-primary-600 px-8 py-4 rounded-lg font-semibold transition-all duration-200">
-                View All Expertise
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-    </div>
-  )
-}
