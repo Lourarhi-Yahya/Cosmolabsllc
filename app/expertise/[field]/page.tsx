@@ -1,15 +1,7 @@
 import { notFound } from 'next/navigation'
 import ClientExpertisePage from './ClientExpertisePage'
-import { 
-  Brain, 
-  Rocket, 
-  Zap, 
-  FlaskConical, 
-  Building2, 
-  Car, 
-  TrendingUp, 
-  Code
-} from 'lucide-react'
+import { Brain, Rocket, Zap, FlaskConical, Car, TrendingUp, Code } from 'lucide-react'
+
 
 const expertiseData = {
   'data-ai': {
